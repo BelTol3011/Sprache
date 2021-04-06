@@ -20,5 +20,9 @@ class SubordinateClause(Clause):
 
 
 class Sentence:
-    def __init__(self, clauses: list[Clause]):
+    def __init__(self):
         pass
+
+
+def parse_sentence(sentence: str):
+    return Sentence()

@@ -1,58 +1,15 @@
 from base import *
 
-substantiv_suffixes = {
-    maskulinum: {
-        strong: {
-            singular: {
-                nominativ: "", genitiv: "es", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}
-        },
-        weak: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}},
-        mixed: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}}
-    },
-    femininum: {
-        strong: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}
-        },
-        weak: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}},
-        mixed: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}}
-    },
-    neutrum: {
-        strong: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}
-        },
-        weak: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}},
-        mixed: {
-            singular: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""},
-            plural: {
-                nominativ: "", genitiv: "", dativ: "", akkusativ: ""}}
-    }
-}
+
+def conjugate_verb(word_stem: str, number: str, person: str) -> str:
+    """Conjugates a verb"""
+    return word_stem + verb_suffixes[number][person]
+
+
+def get_verb_word_stem(verb: str) -> str:
+    """Returns the word stem of a given verb"""
+    for suffix in verb_suffixes_list:
+        if verb.endswith(suffix):
+            return verb[:-len(suffix)]
+
+    return verb
