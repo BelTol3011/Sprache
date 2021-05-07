@@ -36,6 +36,10 @@ weak = "declension weak"
 mixed = "declension mixed"
 declension_types = [strong, weak, mixed]
 
+active = "mode active"
+passive = "mode passive"
+modes = [active, passive]
+
 verb_suffixes = {
     singular: {first_person: "e",
                second_person: "st",
@@ -82,6 +86,9 @@ class Word:
 
     def modify(self, *_, **__):
         return Word(self.word)
+
+    def __str__(self):
+        return self.word
 
 
 class Noun(Word):
@@ -151,4 +158,5 @@ class NounPhrase:
 
 
 class VerbPhrase:
-    ...
+    def __init__(self, verb: str, number: str = None, person: str = None, tempus: str = präsens, modus: str = active):
+        self.verb = verb

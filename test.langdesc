@@ -1,0 +1,24 @@
+# specification on how to construct
+# and recogize text patterns in german grammar
+
+# TODO: reflexive pronouns/verbs
+
+# primitive types: Word
+
+# Noun could also be nominalized adjective or verb or name
+NounPhrase: <[Noun]>
+NounPhrase(with_article=True): <[Article case=case] [NounPhrase]>
+
+Object: <>
+
+MainClause: <[Object case=$Nominative number=subject_number person=subject_person]
+             [Predicate case=predicate_object_case number=subject_number person=subject_person reflexive=is_reflexive]
+
+# Ich wasche MICH.
+# Ich wasche MIR die Hände.
+# SKRRRRRRRRRRRRRRRRRRRRRRRR
+             [Pronoun case=$Accusative number=subject_number person=subject_person | is_reflexive=$True predicate_object_case=$Genitive]
+             [Pronoun case=$ number=subject_number person=subject_person | is_reflexive=$True predicate_object_case=$Accusative]
+
+             [Object case=predicate_object_case]
+             ?[Object]>
